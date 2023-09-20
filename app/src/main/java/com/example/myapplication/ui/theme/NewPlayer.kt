@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.theme
 
+import android.graphics.Paint.Style
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,6 +25,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapplication.R
@@ -37,7 +40,8 @@ fun menuPlayer() {
     var nickname by remember { mutableStateOf("") }
     var number by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
-    var obligatorio = "*Obligatorio"
+    var pushButName by remember { mutableStateOf(false) }
+    var pushButNickname by remember { mutableStateOf(false) }
 
     Column(modifier = Modifier.fillMaxSize()) {
         //Ponemos la imagen del perfinl y TEXTFILE
@@ -55,14 +59,25 @@ fun menuPlayer() {
                     .weight(1f)
             )
             TextField(
-                label = { Text(text = "Nombre")},
+                label = { Text(text = "Nombre") },
                 value = name, onValueChange = { name = it },
                 modifier = Modifier.weight(2f),
                 shape = RoundedCornerShape(15.dp),
                 colors = TextFieldDefaults.textFieldColors(focusedIndicatorColor = Color.Red)
             )
-            Text(text = obligatorio)
         }
+
+        //Lo de obligatorio
+        if (pushButName) {
+            Text(
+                text = "Error: Obligatorio",
+                textAlign = TextAlign.Center,
+                color = Color.Red, modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
+        } else {
+            Text(text = "*Obligatorio", modifier = Modifier.align(Alignment.CenterHorizontally))
+        }
+
         //Ponemos un SPACER y el TEXTFILE
         Row(
             modifier =
@@ -94,6 +109,19 @@ fun menuPlayer() {
                 colors = TextFieldDefaults.textFieldColors(focusedIndicatorColor = Color.Red)
             )
         }
+
+        //Lo de Obligatorio
+        if (pushButNickname) {
+            Text(
+                text = "Error: Obligatorio",
+                textAlign = TextAlign.Center,
+                color = Color.Red, modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
+        } else {
+            Text(text = "*Obligatorio", modifier = Modifier.align(Alignment.CenterHorizontally))
+        }
+
+
         //Ponemos un SPACER, la imagen del Android y el BUTTOM
         Row(
             modifier =
@@ -166,10 +194,11 @@ fun menuPlayer() {
         //Añadimos el boton de ADD NEW PLAYER
         Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
             Button(
-                onClick = { /*TODO*/
-                          if (name.isBlank()){
+                onClick = {
+                    pushButName = name.isBlank()
+                    pushButNickname = nickname.isBlank()
 
-                          }},
+                },
                 modifier = Modifier.padding(10.dp),
                 shape = RoundedCornerShape(18.dp),
             ) {
@@ -178,3 +207,4 @@ fun menuPlayer() {
         }
     }
 }
+
