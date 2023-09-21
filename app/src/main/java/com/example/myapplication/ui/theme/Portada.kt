@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.theme
 
 import android.content.res.Configuration
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,27 +16,37 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.myapplication.R
+import com.google.android.engage.common.datamodel.Image
 
 @Composable
 fun Home(navController: NavController) {
     val configuration = LocalConfiguration.current
-
+    
     when (configuration.orientation) {
         Configuration.ORIENTATION_LANDSCAPE -> {
             Column(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
-            ) {
+            )
+            {
+
+                Image(
+                    painter = painterResource(R.drawable.google),
+                    contentDescription = "",
+                    modifier = Modifier.size(100.dp)
+                )
 
                 Text(
                     text = "Play Juegos",
                     fontSize = 40.sp,
                     fontFamily = FontTittle,
-                    modifier = Modifier.padding(10.dp)
+                    modifier = Modifier.padding(bottom = 15.dp)
                 )
 
                 Row(
@@ -92,6 +103,13 @@ fun Home(navController: NavController) {
                 horizontalAlignment = Alignment.CenterHorizontally
             )
             {
+
+                Image(
+                    painter = painterResource(R.drawable.google),
+                    contentDescription = "",
+                    modifier = Modifier.size(200.dp)
+                )
+
                 Text(
                     text = "Play Juegos",
                     fontSize = 40.sp,
