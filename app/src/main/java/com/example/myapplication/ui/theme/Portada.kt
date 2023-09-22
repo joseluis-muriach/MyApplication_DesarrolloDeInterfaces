@@ -78,7 +78,7 @@ fun Home(navController: NavController) {
                 ) {
 
                     Button(
-                        onClick = {},
+                        onClick = {navController.navigate("Preferences")},
                         modifier = Modifier
                             .width(250.dp)
                             .padding(horizontal = 20.dp)
@@ -131,7 +131,7 @@ fun Home(navController: NavController) {
                 }
 
                 Button(
-                    onClick = {},
+                    onClick = {navController.navigate("Preferences")},
                     modifier = Modifier.width(250.dp),
                 ) {
                     Text(text = "Preferences")

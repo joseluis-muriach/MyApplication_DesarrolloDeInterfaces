@@ -12,7 +12,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.ui.theme.Home
 import com.example.myapplication.ui.theme.MyApplicationTheme
 import com.example.myapplication.ui.theme.menuPlay
-import com.example.myapplication.ui.theme.menuPlayer
+import com.example.myapplication.ui.theme.menuNewPlayer
+import com.example.myapplication.ui.theme.menuPreferences
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,10 +26,10 @@ class MainActivity : ComponentActivity() {
                 {
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = "Portada") {
-                        composable("Play"){ menuPlay()}
                         composable("Portada"){Home(navController)}
-
-                        composable("New Player"){ menuPlayer()}
+                        composable("Play"){ menuPlay()}
+                        composable("New Player"){ menuNewPlayer()}
+                        composable("Preferences"){ menuPreferences() }
                     }
                 }
             }
