@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.theme
+package com.example.myapplication.Unit3
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.myapplication.R
-import com.google.android.engage.common.datamodel.Image
+import com.example.myapplication.ui.theme.FontTittle
 
 @Composable
 fun Home(navController: NavController) {
