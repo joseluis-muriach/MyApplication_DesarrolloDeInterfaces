@@ -215,61 +215,67 @@ fun menuGames() {
                 )
             }
         }
+    }
+    var whenPushTheFab = LocalContext.current
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.BottomEnd
+    ) {
 
-        var whenPushTheFab = LocalContext.current
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.BottomEnd
-        ) {
+        var resultGames by remember { mutableStateOf("") }
+        FloatingActionButton(
+            onClick = {
+                resultGames = ""
+                if (angryBirdsChecked) {
+                    resultGames = "Angry Birds "
+                }
+                if (dragonFlyChecked) {
+                    resultGames += "Dragon fly "
+                }
+                if (hillClimbingChecked) {
+                    resultGames += "Hill Climbing Racing "
+                }
+                if (radiantChecked) {
+                    resultGames += "Radiant Defense "
+                }
+                if (pocketChecked) {
+                    resultGames += "Pocket Soccer "
+                }
+                if (ninjaChecked) {
+                    resultGames += "Ninja Jump "
+                }
+                if (airControlChecked) {
+                    resultGames += "Air Control "
+                }
 
-            var resultGames by remember { mutableStateOf("") }
-            FloatingActionButton(
-                onClick = {
-                    resultGames = ""
-                    if (angryBirdsChecked) {
-                        resultGames = "Angry Birds "
-                    }
-                    if (dragonFlyChecked) {
-                        resultGames += "Dragon fly "
-                    }
-                    if (hillClimbingChecked) {
-                        resultGames += "Hill Climbing Racing "
-                    }
-                    if (radiantChecked) {
-                        resultGames += "Radiant Defense "
-                    }
-                    if (pocketChecked) {
-                        resultGames += "Pocket Soccer "
-                    }
-                    if (ninjaChecked) {
-                        resultGames += "Ninja Jump "
-                    }
-                    if (airControlChecked) {
-                        resultGames += "Air Control "
-                    }
-
+                if (resultGames.isEmpty()) {
+                    Toast.makeText(
+                        whenPushTheFab, "No has leccionado ningún juego",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
                     Toast.makeText(
                         whenPushTheFab, "Has seleccionado " + resultGames,
                         Toast.LENGTH_LONG
                     ).show()
-                },
-                modifier = Modifier
-                    .wrapContentSize(Alignment.BottomEnd)
-                    .padding(16.dp),
-                shape = RoundedCornerShape(30.dp)
+                }
+            },
+            modifier = Modifier
+                .wrapContentSize(Alignment.BottomEnd)
+                .padding(16.dp),
+            shape = RoundedCornerShape(30.dp)
 
-            ) {
-                val iconModifier = Modifier
-                    .wrapContentSize(Alignment.BottomEnd)
-                    .padding(16.dp)
+        ) {
+            val iconModifier = Modifier
+                .wrapContentSize(Alignment.BottomEnd)
+                .padding(16.dp)
 
-                Icon(
-                    imageVector = Icons.Filled.Check,
-                    contentDescription = "Check",
-                    tint = Color.Red,
-                    modifier = iconModifier
-                )
-            }
+            Icon(
+                imageVector = Icons.Filled.Check,
+                contentDescription = "Check",
+                tint = Color.Red,
+                modifier = iconModifier
+            )
         }
     }
 }
