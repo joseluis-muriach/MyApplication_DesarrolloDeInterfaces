@@ -37,6 +37,7 @@ import com.example.myapplication.R
 @Preview(showBackground = true)
 @Composable
 fun menuGames() {
+    //Variables
     var angryBirdsChecked by remember { mutableStateOf(false) }
     var dragonFlyChecked by remember { mutableStateOf(false) }
     var hillClimbingChecked by remember { mutableStateOf(false) }
@@ -46,6 +47,7 @@ fun menuGames() {
     var airControlChecked by remember { mutableStateOf(false) }
 
     Column(modifier = Modifier.fillMaxSize()) {
+        //Here create the rows with images, checkbox and text
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -57,7 +59,7 @@ fun menuGames() {
                 Modifier
                     .size(80.dp)
             )
-            var estadoCheck by rememberSaveable { mutableStateOf(false) }
+
             Row(Modifier.padding(8.dp)) {
                 Checkbox(checked = angryBirdsChecked,
                     onCheckedChange = { isCheked -> angryBirdsChecked = isCheked }
@@ -81,7 +83,7 @@ fun menuGames() {
                 Modifier
                     .size(80.dp)
             )
-            var estadoCheck by rememberSaveable { mutableStateOf(false) }
+
             Row(Modifier.padding(8.dp)) {
                 Checkbox(checked = dragonFlyChecked,
                     onCheckedChange = { isCheked -> dragonFlyChecked = isCheked }
@@ -105,7 +107,7 @@ fun menuGames() {
                 Modifier
                     .size(80.dp)
             )
-            var estadoCheck by rememberSaveable { mutableStateOf(false) }
+
             Row(Modifier.padding(8.dp)) {
                 Checkbox(checked = hillClimbingChecked,
                     onCheckedChange = { isCheked -> hillClimbingChecked = isCheked }
@@ -129,7 +131,7 @@ fun menuGames() {
                 Modifier
                     .size(80.dp)
             )
-            var estadoCheck by rememberSaveable { mutableStateOf(false) }
+
             Row(Modifier.padding(8.dp)) {
                 Checkbox(checked = radiantChecked,
                     onCheckedChange = { isCheked -> radiantChecked = isCheked }
@@ -153,7 +155,7 @@ fun menuGames() {
                 Modifier
                     .size(80.dp)
             )
-            var estadoCheck by rememberSaveable { mutableStateOf(false) }
+
             Row(Modifier.padding(8.dp)) {
                 Checkbox(checked = pocketChecked,
                     onCheckedChange = { isCheked -> pocketChecked = isCheked }
@@ -177,7 +179,7 @@ fun menuGames() {
                 Modifier
                     .size(80.dp)
             )
-            var estadoCheck by rememberSaveable { mutableStateOf(false) }
+
             Row(Modifier.padding(8.dp)) {
                 Checkbox(checked = ninjaChecked,
                     onCheckedChange = { isCheked -> ninjaChecked = isCheked }
@@ -201,7 +203,7 @@ fun menuGames() {
                 Modifier
                     .size(80.dp)
             )
-            var estadoCheck by rememberSaveable { mutableStateOf(false) }
+
             Row(Modifier.padding(8.dp)) {
                 Checkbox(checked = airControlChecked,
                     onCheckedChange = { isCheked -> airControlChecked = isCheked }
@@ -214,57 +216,60 @@ fun menuGames() {
             }
         }
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp)
+        var whenPushTheFab = LocalContext.current
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.BottomEnd
         ) {
 
-        }
-        var selectButtom by remember { mutableStateOf("") }
-        MyFloatingRadioButtom(selectButtom)
-    }
-}
+            var resultGames by remember { mutableStateOf("") }
+            FloatingActionButton(
+                onClick = {
+                    resultGames = ""
+                    if (angryBirdsChecked) {
+                        resultGames = "Angry Birds "
+                    }
+                    if (dragonFlyChecked) {
+                        resultGames += "Dragon fly "
+                    }
+                    if (hillClimbingChecked) {
+                        resultGames += "Hill Climbing Racing "
+                    }
+                    if (radiantChecked) {
+                        resultGames += "Radiant Defense "
+                    }
+                    if (pocketChecked) {
+                        resultGames += "Pocket Soccer "
+                    }
+                    if (ninjaChecked) {
+                        resultGames += "Ninja Jump "
+                    }
+                    if (airControlChecked) {
+                        resultGames += "Air Control "
+                    }
 
-@Composable
-fun MyFloatingRadioButtom(selectButtom: String) {
-    //Creamos el FAB
-    var whenPushTheFab = LocalContext.current
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.BottomEnd
-    ) {
-
-        FloatingActionButton(
-            onClick = {
-                if (selectButtom == "") {
                     Toast.makeText(
-                        whenPushTheFab, "No has pulsado ninguna opción ",
+                        whenPushTheFab, "Has seleccionado " + resultGames,
                         Toast.LENGTH_LONG
                     ).show()
-                } else {
-                    Toast.makeText(
-                        whenPushTheFab, "Has seleccionado $selectButtom con una " +
-                                "puntuación de $selectionSlider", Toast.LENGTH_LONG
-                    ).show()
-                }
-            },
-            modifier = Modifier
-                .wrapContentSize(Alignment.BottomEnd)
-                .padding(16.dp),
-            shape = RoundedCornerShape(30.dp)
+                },
+                modifier = Modifier
+                    .wrapContentSize(Alignment.BottomEnd)
+                    .padding(16.dp),
+                shape = RoundedCornerShape(30.dp)
 
-        ) {
-            val iconModifier = Modifier
-                .wrapContentSize(Alignment.BottomEnd)
-                .padding(16.dp)
+            ) {
+                val iconModifier = Modifier
+                    .wrapContentSize(Alignment.BottomEnd)
+                    .padding(16.dp)
 
-            Icon(
-                imageVector = Icons.Filled.Check,
-                contentDescription = "Check",
-                tint = Color.Red,
-                modifier = iconModifier
-            )
+                Icon(
+                    imageVector = Icons.Filled.Check,
+                    contentDescription = "Check",
+                    tint = Color.Red,
+                    modifier = iconModifier
+                )
+            }
         }
     }
 }
