@@ -1,16 +1,21 @@
 package com.example.myapplication.Unit3
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -158,12 +163,7 @@ fun menuNewPlayer() {
                     .size(60.dp)
                     .weight(1f)
             )
-            TextField(
-                value = number, onValueChange = { number = it },
-                modifier = Modifier.weight(2f),
-                shape = RoundedCornerShape(15.dp),
-                colors = TextFieldDefaults.textFieldColors(focusedIndicatorColor = Color.Red)
-            )
+            MyDropDownMenu()
         }
         //Ponemos la imagen y el TEXTFILE (4)
         Row(
@@ -203,4 +203,41 @@ fun menuNewPlayer() {
         }
     }
 }
+
+//Lista para el TextFIle de cámara
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MyDropDownMenu() {
+    var selectedText by remember { mutableStateOf("") }
+    var expanded by remember { mutableStateOf(false) }
+    val telefonos = listOf("652345845", "678982321", "123456789", "555555555")
+
+    Column {
+        OutlinedTextField(
+            value = selectedText, onValueChange = { selectedText = it },
+            enabled = false,
+            label = { Text("Teléfono") },
+            modifier = Modifier
+                .clickable { expanded = true },
+            shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp),
+            colors = TextFieldDefaults.textFieldColors(
+                containerColor = Color.White,
+                focusedIndicatorColor = Color.White
+            )
+        )
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false },
+        ) {
+            telefonos.forEach { telefonos ->
+                DropdownMenuItem(
+                    text = { Text(text = telefonos) },
+                    onClick = { selectedText = telefonos }
+                )
+            }
+        }
+    }
+}
+
 

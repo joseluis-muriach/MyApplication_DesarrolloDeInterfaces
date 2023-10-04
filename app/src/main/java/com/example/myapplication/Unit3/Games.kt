@@ -21,7 +21,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -224,28 +223,21 @@ fun menuGames() {
 
         var resultGames by remember { mutableStateOf("") }
         FloatingActionButton(
+
             onClick = {
                 resultGames = ""
-                if (angryBirdsChecked) {
-                    resultGames = "Angry Birds "
-                }
-                if (dragonFlyChecked) {
-                    resultGames += "Dragon fly "
-                }
-                if (hillClimbingChecked) {
-                    resultGames += "Hill Climbing Racing "
-                }
-                if (radiantChecked) {
-                    resultGames += "Radiant Defense "
-                }
-                if (pocketChecked) {
-                    resultGames += "Pocket Soccer "
-                }
-                if (ninjaChecked) {
-                    resultGames += "Ninja Jump "
-                }
-                if (airControlChecked) {
-                    resultGames += "Air Control "
+
+                val milistaMutableNombres = mutableListOf<String>(
+                    "Angry Birds", "Dragon Fly", "Hill Climbing Racing", "Rdiant Defense",
+                    "Pocket Soccer", "Ninja Jump", "Air Control")
+                val miListaMutable = mutableListOf(
+                    angryBirdsChecked, dragonFlyChecked, hillClimbingChecked, radiantChecked,
+                    pocketChecked, ninjaChecked,airControlChecked)
+
+                for (i in 0.. miListaMutable.size-1) {
+                    if (miListaMutable[i] == true) {
+                        resultGames += milistaMutableNombres[i] + " "
+                    }
                 }
 
                 if (resultGames.isEmpty()) {
