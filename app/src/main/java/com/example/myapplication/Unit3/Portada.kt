@@ -86,7 +86,7 @@ fun Home(navController: NavController) {
                         Text(text = "Preference")
                     }
                     Button(
-                        onClick = {},
+                        onClick = {navController.navigate("About")},
                         modifier = Modifier.width(250.dp)
                     ) {
                         Text(text = "About")
@@ -138,10 +138,10 @@ fun Home(navController: NavController) {
                 }
 
                 Button(
-                    onClick = {},
+                    onClick = {navController.navigate("About")},
                     modifier = Modifier.width(250.dp)
                 ) {
-                    Text(text = "about")
+                    Text(text = "About")
                 }
             }
         }

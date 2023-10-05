@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.Unit3.Home
+import com.example.myapplication.Unit3.MenuAbout
 import com.example.myapplication.ui.theme.MyApplicationTheme
 import com.example.myapplication.Unit3.menuGames
 import com.example.myapplication.Unit3.menuNewPlayer
@@ -30,6 +31,7 @@ class MainActivity : ComponentActivity() {
                         composable("Play"){ menuGames() }
                         composable("New Player"){ menuNewPlayer() }
                         composable("Preferences"){ menuPreferences() }
+                        composable("About"){ MenuAbout()}
                     }
                 }
             }
